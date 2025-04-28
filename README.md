@@ -97,14 +97,6 @@ http://webproject.test
 - **Status Code:** `200 OK`
 - **Description:** Logout the authenticated user.
 
-**Response:**
-
-```json
-{
-  "message": "Successfully logged out."
-}
-```
-
 ---
 
 ### `/cart` (GET)
@@ -120,7 +112,7 @@ http://webproject.test
 
 - **Authentication:** No
 - **Status Code:** `200 OK` / `404 Not Found`
-- **Description:** View details of a specific product.
+- **Description:** View details of a specific product.    
 
 ---
 
