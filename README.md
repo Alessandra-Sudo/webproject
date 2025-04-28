@@ -1,66 +1,180 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 CHL SmartSolution - API and Web Routes Documentation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🌐 Base URL
 
-## About Laravel
+```
+http://webproject.test
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📚 Full Route List
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| #   | Route            | Method | Name         | Authentication | Description                 |
+| --- | ---------------- | ------ | ------------ | -------------- | --------------------------- |
+| 1   | `/`              | GET    | `home`       | Optional       | View homepage with products |
+| 2   | `/signin`        | GET    | `signin`     | No             | View login page             |
+| 3   | `/signin`        | POST   | —            | No             | Authenticate user           |
+| 4   | `/signup`        | GET    | `signup`     | No             | View signup page            |
+| 5   | `/signup`        | POST   | —            | No             | Register new user           |
+| 6   | `/signout`       | POST   | `signout`    | Yes            | Logout user                 |
+| 7   | `/cart`          | GET    | `cart`       | Yes            | View user's cart page       |
+| 8   | `/products/{id}` | GET    | —            | No             | View a specific product     |
+| 9   | `/help-center`   | GET    | `helpCenter` | Optional       | View help center page       |
+| 10  | `/help-request`  | POST   | —            | Yes            | Submit a help request       |
+| 11  | `/checkout`      | POST   | —            | Yes            | Place an order (checkout)   |
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Detailed Route Descriptions
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### `/` (GET)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Name:** `home`
+- **Authentication:** Optional
+- **Status Code:** `200 OK`
+- **Description:** Display homepage with paginated product list.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### `/signin` (GET)
 
-### Premium Partners
+- **Name:** `signin`
+- **Authentication:** No
+- **Status Code:** `200 OK`
+- **Description:** Display user login page.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+### `/signin` (POST)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Authentication:** No
+- **Status Code:** `303 See Other` (on success) / `422 Unprocessable Entity` (validation failed)
+- **Description:** Authenticate a user.
 
-## Code of Conduct
+**Request:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### `/signup` (GET)
 
-## License
+- **Name:** `signup`
+- **Authentication:** No
+- **Status Code:** `200 OK`
+- **Description:** Display user registration page.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+### `/signup` (POST)
+
+- **Authentication:** No
+- **Status Code:** `303 See Other` (on success) / `422 Unprocessable Entity` (validation failed)
+- **Description:** Register a new user.
+
+**Request:**
+
+```json
+{
+  "name": "John Doe",
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
+
+---
+
+### `/signout` (POST)
+
+- **Name:** `signout`
+- **Authentication:** Yes
+- **Status Code:** `200 OK`
+- **Description:** Logout the authenticated user.
+
+---
+
+### `/cart` (GET)
+
+- **Name:** `cart`
+- **Authentication:** Yes
+- **Status Code:** `200 OK`
+- **Description:** Display the user's shopping cart page.
+
+---
+
+### `/products/{id}` (GET)
+
+- **Authentication:** No
+- **Status Code:** `200 OK` / `404 Not Found`
+- **Description:** View details of a specific product.    
+
+---
+
+### `/help-center` (GET)
+
+- **Name:** `helpCenter`
+- **Authentication:** Optional
+- **Status Code:** `200 OK`
+- **Description:** Display help center page.
+
+---
+
+### `/help-request` (POST)
+
+- **Authentication:** Yes
+- **Status Code:** `201 Created` / `422 Unprocessable Entity`
+- **Description:** Submit a new help request.
+
+**Request:**
+
+```json
+{
+  "subject": "Delivery Issue",
+  "address": "123 Street Name, City",
+  "message": "My order hasn't arrived yet."
+}
+```
+
+---
+
+### `/checkout` (POST)
+
+- **Authentication:** Yes
+- **Status Code:** `201 Created` / `422 Unprocessable Entity`
+- **Description:** Submit a new order from the shopping cart.
+
+**Request:**
+
+```json
+{
+  "cart_items": "[{\"id\":1,\"quantity\":2}]",
+  "subtotal": 500,
+  "shipping": 50,
+  "tax": 25,
+  "total": 575
+}
+```
+
+**Response:**
+
+```json
+{
+  "message": "Your order has been placed successfully."
+}
+```
+
+---
+
+# 📢 Notes
+
+- Flash messages are used for user feedback.
+- `sweetalert()` notifications are used on success/error.
+- Validation errors return status code `422` with a corresponding message.
+- User must be authenticated to access checkout, cart, help-request, and signout endpoints.
+- Products can be viewed without logging in.
