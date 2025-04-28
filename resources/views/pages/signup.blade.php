@@ -1,6 +1,5 @@
 <x-base>
-    <a href="/"
-        class="absolute top-4 left-4 flex items-center text-gray-600 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-400">
+    <a href="/" class="absolute top-4 left-4 flex items-center text-gray-600 hover:text-gray-800">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-6 h-6 mr-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -9,18 +8,17 @@
     </a>
 
     <div class="flex items-center justify-center min-h-screen">
-        <div
-            class="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
+        <div class="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
             <div class="hidden bg-cover lg:block lg:w-1/2" style="background-image: url('images/auth.png');">
             </div>
 
             <div class="w-full px-6 py-8 md:px-8 lg:w-1/2">
-                <p class="mt-3 text-xl font-bold text-center text-lime-700 dark:text-gray-200">
+                <p class="mt-3 text-xl font-bold text-center text-lime-700">
                     Create your account
                 </p>
 
                 <a href="#"
-                    class="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    class="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50">
                     <div class="px-4 py-2">
                         <!-- Google Icon SVG -->
                         <svg class="w-6 h-6" viewBox="0 0 40 40">
@@ -42,19 +40,17 @@
                 </a>
 
                 <div class="flex items-center justify-between mt-4">
-                    <span class="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
-                    <a href="#"
-                        class="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline">or
+                    <span class="w-1/5 border-b lg:w-1/4"></span>
+                    <a href="#" class="text-xs text-center text-gray-500 uppercase hover:underline">or
                         register
                         with email</a>
-                    <span class="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
+                    <span class="w-1/5 border-b lg:w-1/4"></span>
                 </div>
 
                 <form action="/signup" method="post">
                     @csrf
                     <div class="mt-4">
-                        <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                            for="signupName">Full
+                        <label class="block mb-2 text-sm font-medium text-gray-600" for="signupName">Full
                             Name</label>
                         <input id="signupName" name="name" value="{{ old('name') }}"
                             class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring focus:ring-lime-300 focus:ring-opacity-50"
@@ -62,8 +58,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                            for="signupEmail">Email
+                        <label class="block mb-2 text-sm font-medium text-gray-600" for="signupEmail">Email
                             Address</label>
                         <input id="signupEmail" name="email" value="{{ old('email') }}"
                             class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring focus:ring-lime-300 focus:ring-opacity-50"
@@ -71,7 +66,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                        <label class="block mb-2 text-sm font-medium text-gray-600"
                             for="signupPassword">Password</label>
                         <input id="signupPassword" name="password"
                             class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring focus:ring-lime-300 focus:ring-opacity-50"
@@ -87,10 +82,10 @@
                 </form>
 
                 <div class="flex items-center justify-between mt-4">
-                    <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-                    <a href="/signin" class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline">or sign
+                    <span class="w-1/5 border-b md:w-1/4"></span>
+                    <a href="/signin" class="text-xs text-gray-500 uppercase hover:underline">or sign
                         in</a>
-                    <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+                    <span class="w-1/5 border-b md:w-1/4"></span>
                 </div>
             </div>
         </div>
