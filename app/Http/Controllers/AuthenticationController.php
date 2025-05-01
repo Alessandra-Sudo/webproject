@@ -37,7 +37,7 @@ class AuthenticationController extends Controller
         ]);
  
         sweetalert()->success('You successfully registered your account.');
-        return redirect()->route('signin');
+        return redirect()->route('signin', [], 303);
     }
 
     public function SignInUser(Request $request) {
@@ -70,7 +70,7 @@ class AuthenticationController extends Controller
 
         Auth::login($user);
         sweetalert()->success('Welcome back, ' . $user->name . '!');
-        return redirect()->route('home');
+        return redirect()->route('home', [], 303);
     }
 
     public function SignOutUser(Request $request) {
@@ -80,6 +80,6 @@ class AuthenticationController extends Controller
         $request->session()->regenerateToken();
         
         sweetalert()->success('You have successfully logged out.');
-        return redirect()->route('home');
+        return redirect()->route('home', [], 303);
     }
 }

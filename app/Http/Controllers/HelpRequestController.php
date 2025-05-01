@@ -35,6 +35,6 @@ class HelpRequestController extends Controller
         ]);
 
         sweetalert()->success('Your request has been submitted!');
-        return redirect()->route('helpCenter');
+        return redirect()->route('helpCenter', [], 303);
     }
 }

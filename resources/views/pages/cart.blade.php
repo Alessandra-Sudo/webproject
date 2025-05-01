@@ -148,16 +148,13 @@
                 const tax = subtotal * 0.02;
                 const total = subtotal + shipping + tax;
 
-                // Update HTML
                 document.getElementById('subtotal').innerText = `₱${subtotal.toFixed(2)}`;
                 document.getElementById('shipping').innerText = `₱${shipping.toFixed(2)}`;
                 document.getElementById('tax').innerText = `₱${tax.toFixed(2)}`;
                 document.getElementById('total').innerText = `₱${total.toFixed(2)}`;
 
-                // Update hidden inputs for form submission
                 document.getElementById('cartItemsInput').value = JSON.stringify(cart);
-                document.getElementById('totalInput').value = (total.toFixed(2) + subtotal.toFixed(2) + shipping.toFixed(2) +
-                    tax.toFixed(2));
+                document.getElementById('totalInput').value = (total + subtotal + shipping + tax);
             }
 
             document.addEventListener('DOMContentLoaded', () => {

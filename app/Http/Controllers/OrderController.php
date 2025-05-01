@@ -36,6 +36,6 @@ class OrderController extends Controller
         ]);
 
         sweetalert()->success('Your order has been placed successfully.');
-        return redirect()->route('home')->with('clear_cart', true);
+        return redirect()->route('home', [], 303)->with('clear_cart', true);
     }
 }
