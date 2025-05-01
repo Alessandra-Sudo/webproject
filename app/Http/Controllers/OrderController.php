@@ -13,25 +13,19 @@ class OrderController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'cart_items' => 'required|json',
-            'subtotal' => 'required|numeric',
-            'shipping' => 'required|numeric',
-            'tax' => 'required|numeric',
             'total' => 'required|numeric',
         ], [
             'cart_items.required' => 'Cart data is required.',
             'cart_items.json' => 'Cart items must be in valid JSON format.',
-            'subtotal.required' => 'Subtotal is required.',
-            'shipping.required' => 'Shipping is required.',
-            'tax.required' => 'Tax is required.',
             'total.required' => 'Total is required.',
         ]);
 
         if ($validator->fails()) {
             sweetalert()->error($validator->errors()->first());
-            return redirect()->back()->withErrors($validator)->withInput()->setStatusCode(422);
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $cartItems = json_decode($request->cart_items, true);
+        $cartItems = json_decode($request->cart_items, associative: true);
 
         Order::create([
             'customer_id' => Auth::id(),
@@ -42,6 +36,6 @@ class OrderController extends Controller
         ]);
 
         sweetalert()->success('Your order has been placed successfully.');
-        return redirect()->route('home')->with('clear_cart', true)->setStatusCode(201);
+        return redirect()->route('home')->with('clear_cart', true);
     }
 }

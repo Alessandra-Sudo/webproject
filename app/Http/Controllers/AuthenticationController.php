@@ -16,9 +16,9 @@ class AuthenticationController extends Controller
             'email' => 'required|max:255|unique:users',
             'password' => 'required|min:8',
         ], [
-            'name.required' => 'Name is required',
-            'email.required' => 'Email is required',
-            'email.unique' => 'Email already exists',
+            'name.required' => 'Please fill out your full name',
+            'email.required' => 'Please fill out your email address',
+            'email.unique' => 'Email has been already used',
             'password.required' => 'Password is required',
             'password.min' => 'Password must be at least 8 characters',
         ]);
@@ -26,18 +26,18 @@ class AuthenticationController extends Controller
         if ($validator->fails()) {
             $message = $validator->errors()->first();
             flash()->error($message);
-            return redirect()->back()->withInput()->setStatusCode(422);
+            return redirect()->back()->withInput();
         }
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role' => 'customer',
         ]);
-
+ 
         sweetalert()->success('You successfully registered your account.');
-        return redirect()->route('signin')->setStatusCode(201);
+        return redirect()->route('signin');
     }
 
     public function SignInUser(Request $request) {
@@ -45,7 +45,7 @@ class AuthenticationController extends Controller
             'email' => 'required|max:255|exists:users',
             'password' => 'required|min:8',
         ], [
-            'email.required' => 'Email is required',
+            'email.required' => 'Please insert your registered email',
             'email.exists' => 'Email does not exist',
             'password.required' => 'Password is required',
             'password.min' => 'Password must be at least 8 characters',
@@ -54,24 +54,32 @@ class AuthenticationController extends Controller
         if ($validator->fails()) {
             $message = $validator->errors()->first();
             flash()->error($message);
-            return redirect()->back()->withInput()->setStatusCode(422);
+            return redirect()->back()->withInput();
         }
 
         $user = User::where('email', $request->email)->first();
 
         if (!Hash::check($request->password, $user->password)) {
             flash()->error('Invalid credentials');
-            return back()->withInput()->setStatusCode(401);
+            return back()->withInput();
         }
+
+        // if (Auth::user()->role == "admin"){
+
+        // }
 
         Auth::login($user);
         sweetalert()->success('Welcome back, ' . $user->name . '!');
-        return redirect()->route('home')->setStatusCode(200);
+        return redirect()->route('home');
     }
 
     public function SignOutUser(Request $request) {
         Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
         sweetalert()->success('You have successfully logged out.');
-        return redirect()->route('home')->setStatusCode(200);
+        return redirect()->route('home');
     }
 }

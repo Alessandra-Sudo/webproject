@@ -29,9 +29,6 @@ class OrderTest extends TestCase
 
         $payload = [
             'cart_items' => json_encode($cartItems),
-            'subtotal' => 100.00, // Not stored in DB
-            'shipping' => 10.00,   // Not stored in DB
-            'tax' => 5.00,         // Not stored in DB
             'total' => 115.00,
         ];
 
@@ -62,9 +59,6 @@ class OrderTest extends TestCase
 
         $payload = [
             'cart_items' => 'not-json',
-            'subtotal' => 100.00,
-            'shipping' => 10.00,
-            'tax' => 5.00,
             // Missing total
         ];
 

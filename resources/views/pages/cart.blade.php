@@ -24,9 +24,6 @@
                         </ul>
 
                         <input type="hidden" name="cart_items" id="cartItemsInput">
-                        <input type="hidden" name="subtotal" id="subtotalInput">
-                        <input type="hidden" name="shipping" id="shippingInput">
-                        <input type="hidden" name="tax" id="taxInput">
                         <input type="hidden" name="total" id="totalInput">
 
                         <div class="mt-8 space-y-2">
@@ -159,10 +156,8 @@
 
                 // Update hidden inputs for form submission
                 document.getElementById('cartItemsInput').value = JSON.stringify(cart);
-                document.getElementById('subtotalInput').value = subtotal.toFixed(2);
-                document.getElementById('shippingInput').value = shipping.toFixed(2);
-                document.getElementById('taxInput').value = tax.toFixed(2);
-                document.getElementById('totalInput').value = total.toFixed(2);
+                document.getElementById('totalInput').value = (total.toFixed(2) + subtotal.toFixed(2) + shipping.toFixed(2) +
+                    tax.toFixed(2));
             }
 
             document.addEventListener('DOMContentLoaded', () => {

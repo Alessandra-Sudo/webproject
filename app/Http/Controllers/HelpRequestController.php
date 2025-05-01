@@ -24,7 +24,7 @@ class HelpRequestController extends Controller
         if ($validator->fails()) {
             $message = $validator->errors()->first();
             sweetalert()->error($message);
-            return redirect()->back()->withInput()->setStatusCode(422);
+            return redirect()->back()->withInput();
         }
 
         HelpRequest::create([
@@ -35,6 +35,6 @@ class HelpRequestController extends Controller
         ]);
 
         sweetalert()->success('Your request has been submitted!');
-        return redirect()->route('helpCenter')->setStatusCode(201);
+        return redirect()->route('helpCenter');
     }
 }
